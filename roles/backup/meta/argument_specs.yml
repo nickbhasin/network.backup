@@ -19,7 +19,7 @@ argument_specs:
 
       data_store:
         description:
-          - Specifies the data store configuration, which can be either local or SCM. Includes details like path for local storage or URL, token, and user info for SCM.
+          - Specifies the data store configuration, which can be either local or SCM or SSH. Includes details like path for local storage or URL, token, and user info for SCM.
         type: dict
         required: true
         options:
@@ -84,3 +84,45 @@ argument_specs:
                     required: true
                     description:
                       - Filename for the backup stored in the SCM (e.g., <platform>_<date>.txt).
+          ssh:
+            description:
+              - Specify the SSH-based datastore (push/pull backups via SSH).
+            type: dict
+            required: false
+            options:
+              host:
+                type: str
+                required: true
+                description:
+                  - Hostname or IP address of the SSH server.
+              port:
+                type: int
+                required: false
+                description:
+                  - SSH port.
+              user:
+                type: str
+                required: true
+                description:
+                  - SSH username for authentication.
+              path:
+                type: str
+                required: true
+                description:
+                  - Destination path on the remote server where backups will be stored.
+              filename:
+                type: str
+                required: false
+                description:
+                  - Filename for the backup file.
+              keyfile:
+                type: str
+                required: false
+                description:
+                  - Path to private key file for SSH authentication.
+              inline_key:
+                type: str
+                required: false
+                no_log: true
+                description:
+                  - Inline private key string.
