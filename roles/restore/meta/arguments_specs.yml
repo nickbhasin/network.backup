@@ -60,45 +60,10 @@ argument_specs:
                     required: true
                     description:
                       - Filename for the backup stored in the SCM (e.g., <platform>_<date>.txt).
-          ssh:
-            description:
-              - Specifies the SSH-based data store to retrieve backups from.
-            type: dict
-            required: false
-            options:
-              host:
-                type: str
-                required: true
-                description:
-                  - Hostname or IP address of the SSH server.
-              port:
-                type: int
-                required: false
-                description:
-                  - SSH port.
-              user:
-                type: str
-                required: true
-                description:
-                  - SSH username for authentication.
-              path:
-                type: str
-                required: true
-                description:
-                  - Remote path on the SSH server where the backup file is located.
-              filename:
-                type: str
-                required: true
-                description:
-                  - Filename of the backup to restore.
-              keyfile:
-                type: str
-                required: false
-                description:
-                  - Path to private key file for SSH authentication.
-              inline_key:
-                type: str
-                required: false
-                no_log: true
-                description:
-                  - Inline private key string.
+                  ssh_key_file:
+                    type: str
+                    description: "Path to the SSH private key file for Git authentication."
+                  ssh_key_content:
+                    type: str
+                    description: "The content of the SSH private key for Git authentication (e.g., from Vault)."
+                    no_log: true
