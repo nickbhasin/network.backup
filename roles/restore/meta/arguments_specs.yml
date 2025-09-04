@@ -46,7 +46,6 @@ argument_specs:
                       - URL of the SCM repository (e.g., GitHub) where the backup file is stored.
                   token:
                     type: str
-                    required: true
                     no_log: true
                     description:
                       - Authentication token for accessing the SCM repository.
