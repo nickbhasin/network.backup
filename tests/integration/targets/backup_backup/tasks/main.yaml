@@ -1,4 +1,8 @@
 ---
+- name: Debug
+  ansible.builtin.debug:
+    msg: "START network.backup persist operation integration tests on connection={{ ansible_connection }}"
+
 - name: Test SCM backup via SSH, gather and persist
   block:
     - name: Create temporary resources for SCM test
@@ -43,14 +47,6 @@
   always:
     - name: Clean up SCM test resources
       ansible.builtin.include_tasks: _cleanup_scm.yaml
-
-- name: Debug
-  ansible.builtin.debug:
-    msg: "END network.backup integration tests on connection={{ ansible_connection }}"
-
-- name: Debug
-  ansible.builtin.debug:
-    msg: "START network.backup persist operation integration tests on connection={{ ansible_connection }}"
 
 - name: Cleanup, gather and persist
   block:
