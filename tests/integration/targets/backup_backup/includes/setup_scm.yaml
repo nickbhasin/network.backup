@@ -10,26 +10,31 @@
       ansible.builtin.command: "git init"
       args:
         chdir: "{{ source_repo_dir.path }}"
+      changed_when: false
 
     - name: Create README file
       ansible.builtin.copy:
         content: "Initial commit"
         dest: "{{ source_repo_dir.path }}/README.md"
+        mode: '0644'
 
     - name: Configure git user email
       ansible.builtin.command: "git config user.email 'ansible@example.com'"
       args:
         chdir: "{{ source_repo_dir.path }}"
+      changed_when: false
 
     - name: Configure git user name
       ansible.builtin.command: "git config user.name 'Ansible Test'"
       args:
         chdir: "{{ source_repo_dir.path }}"
+      changed_when: false
 
     - name: Add and commit the initial file
       ansible.builtin.shell: "git add . && git commit -m 'Initial commit'"
       args:
         chdir: "{{ source_repo_dir.path }}"
+      changed_when: false
 
 - name: Create a temporary directory for the bare 'remote' repository
   ansible.builtin.tempfile:
@@ -40,6 +45,7 @@
   ansible.builtin.command: "git clone --bare {{ source_repo_dir.path }} ."
   args:
     chdir: "{{ remote_repo_dir.path }}"
+  changed_when: false
 
 - name: Generate a temporary, passwordless SSH key pair for this test
   ansible.builtin.tempfile:
